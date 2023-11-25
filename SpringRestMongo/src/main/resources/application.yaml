@@ -2,8 +2,8 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      username: rootuser
-      password: rootpass
+      username: root
+      password: 1504
       database: timurdb
       port: 27017
       host: localhost
