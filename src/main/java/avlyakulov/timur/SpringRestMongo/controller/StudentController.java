@@ -1,23 +1,28 @@
 package avlyakulov.timur.SpringRestMongo.controller;
 
+import avlyakulov.timur.SpringRestMongo.dto.StudentDTO;
+import avlyakulov.timur.SpringRestMongo.mapper.StudentMapper;
 import avlyakulov.timur.SpringRestMongo.model.Student;
 import avlyakulov.timur.SpringRestMongo.sevice.StudentService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/students")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
+    private final StudentMapper studentMapper;
 
 
     @GetMapping
-    public List<Student> fetchAllStudents() {
-        return studentService.getAllStudents();
+    public List<StudentDTO> fetchAllStudents() {
+        return studentService.getAllStudents().stream().map(studentMapper::toStudentDTO).collect(Collectors.toList());
+        //return null;
     }
 
     @GetMapping("/{id}")

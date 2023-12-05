@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: root
+      password: '1504'
+      database: timurdb
+      auto-index-creation: true
+      authentication-database: admin
