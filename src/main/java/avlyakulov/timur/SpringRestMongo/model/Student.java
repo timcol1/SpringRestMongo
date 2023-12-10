@@ -23,4 +23,5 @@ public class Student {
     private String numberPassport;
 
     private String fullName;
+    private String gender;
 }
