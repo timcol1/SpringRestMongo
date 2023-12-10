@@ -21,6 +21,4 @@ public class Student {
 
     @Indexed(unique = true)
     private String numberPassport;
-
-    private String fullName;
 }
