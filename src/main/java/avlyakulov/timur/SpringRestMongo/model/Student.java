@@ -24,4 +24,5 @@ public class Student {
 
     private String fullName;
     private String gender;
+    private String numberPhone;
 }
