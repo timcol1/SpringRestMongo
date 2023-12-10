@@ -1,28 +1,29 @@
 package avlyakulov.timur.SpringRestMongo.controller;
 
-import avlyakulov.timur.SpringRestMongo.dto.StudentDTO;
-import avlyakulov.timur.SpringRestMongo.mapper.StudentMapper;
 import avlyakulov.timur.SpringRestMongo.model.Student;
-import avlyakulov.timur.SpringRestMongo.sevice.StudentService;
-import lombok.RequiredArgsConstructor;
+import avlyakulov.timur.SpringRestMongo.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/students")
-@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
-    private final StudentMapper studentMapper;
+
+    @Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
 
     @GetMapping
-    public List<StudentDTO> fetchAllStudents() {
-        return studentService.getAllStudents().stream().map(studentMapper::toStudentDTO).collect(Collectors.toList());
-        //return null;
+    public List<Student> getAllStudents(@RequestParam Map<String, String> params) {
+        int a = 12;
+        return studentService.getAllStudents(params);
     }
 
     @GetMapping("/{id}")
@@ -35,6 +36,7 @@ public class StudentController {
         return studentService.createStudent(student);
     }
 
+
     @DeleteMapping("/{id}")
     public void deleteStudentById(@PathVariable String id) {
         studentService.deleteStudentById(id);
@@ -44,5 +46,4 @@ public class StudentController {
     public Student updateStudent(@PathVariable String id, @RequestBody Student student) {
         return studentService.updateStudent(id, student);
     }
-
 }
