@@ -1,7 +1,22 @@
 package avlyakulov.timur.SpringRestMongo;
 
+import avlyakulov.timur.SpringRestMongo.model.Address;
+import avlyakulov.timur.SpringRestMongo.model.Device;
+import avlyakulov.timur.SpringRestMongo.model.Gender;
+import avlyakulov.timur.SpringRestMongo.model.Student;
+import avlyakulov.timur.SpringRestMongo.repository.DeviceRepository;
+import avlyakulov.timur.SpringRestMongo.repository.StudentRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 public class SpringRestMongoApplication {
@@ -11,39 +26,25 @@ public class SpringRestMongoApplication {
     }
 
     /*@Bean
-    CommandLineRunner runner(StudentRepository repository, MongoTemplate mongoTemplate) {
+    CommandLineRunner runner(StudentRepository repository, DeviceRepository deviceRepository, MongoTemplate mongoTemplate) {
         return args -> {
-            Address address = new Address(
-                    "Ukraine",
-                    "Kharkiv",
-                    "61118"
-            );
+            Device device = new Device("Iphone 14 pro max");
 
-            String email = "rrggo76@gmail.com";
+            deviceRepository.save(device);
 
             Student student = new Student(
                     "Timur",
-                    "Avlyakulov",
-                    email,
-                    Gender.MALE,
-                    address,
-                    List.of("Computer Science", "Math"),
-                    BigDecimal.TEN,
-                    LocalDateTime.now()
+                    "21",
+                    "1145",
+                    device
             );
 
             //usingMongoTemplateAndQuery(repository, mongoTemplate, email, student);
-            repository.findStudentByEmail(email)
-                    .ifPresentOrElse(s -> {
-                        System.out.println(s + " already exists");
-                    }, () -> {
-                        System.out.println("Inserting student " + student);
-                        repository.insert(student);
-                    });
+            repository.save(student);
         };
-    }
+    }*/
 
-    private static void usingMongoTemplateAndQuery(StudentRepository repository, MongoTemplate mongoTemplate, String email, Student student) {
+    /*private static void usingMongoTemplateAndQuery(StudentRepository repository, MongoTemplate mongoTemplate, String email, Student student) {
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is(email));
 

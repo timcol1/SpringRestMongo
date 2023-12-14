@@ -3,6 +3,7 @@ package avlyakulov.timur.SpringRestMongo.service;
 import avlyakulov.timur.SpringRestMongo.exceptions.ModelNotFoundException;
 import avlyakulov.timur.SpringRestMongo.exceptions.NumberOfPassportAlreadyExists;
 import avlyakulov.timur.SpringRestMongo.model.Student;
+import avlyakulov.timur.SpringRestMongo.repository.DeviceRepository;
 import avlyakulov.timur.SpringRestMongo.repository.StudentCriteriaRepositoryImpl;
 import avlyakulov.timur.SpringRestMongo.repository.StudentRepository;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -19,15 +20,17 @@ public class StudentService {
 
     private final StudentRepository studentRepository;
     private final StudentCriteriaRepositoryImpl studentCriteriaRepository;
+    private final DeviceRepository deviceRepository;
 
     private static final String NAME = "name";
     private static final String AGE = "age";
     private static final String PASSPORT = "numberPassport";
 
 
-    public StudentService(StudentRepository studentRepository, StudentCriteriaRepositoryImpl studentCriteriaRepository) {
+    public StudentService(StudentRepository studentRepository, StudentCriteriaRepositoryImpl studentCriteriaRepository, DeviceRepository deviceRepository) {
         this.studentRepository = studentRepository;
         this.studentCriteriaRepository = studentCriteriaRepository;
+        this.deviceRepository = deviceRepository;
     }
 
 
